@@ -1,0 +1,30 @@
+from math import cos as cosx, sin as senx, pi
+
+def f(x):
+    return cosx(x) - x
+
+def df(x):
+    return -senx(x) - 1
+
+def newton_con_tabla(P0, tol=1e-5, max_iter=20):
+    Pn_1 = P0
+    print(f"{'Iter':<5}{'Pn':<20}{'Error (|Pn-Pn-1|)':<20}")
+    print("-" * 45)
+    
+    for n in range(1, max_iter + 1):
+        f_val = f(Pn_1)
+        df_val = df(Pn_1)
+        if df_val == 0:
+            raise ValueError("f'(Pn-1) = 0. No se puede continuar.")
+        Pn = Pn_1 - f_val / df_val
+        error = abs(Pn - Pn_1)
+        print(f"{n:<5}{Pn:<20.10f}{error:<20.10f}")
+        if error < tol:
+            print("\nConvergencia alcanzada en la iteración", n)
+            return Pn
+        Pn_1 = Pn
+    print("\nNo se alcanzó la tolerancia dentro del número máximo de iteraciones.")
+    return Pn
+
+raiz = newton_con_tabla(P0=pi/4, tol=1e-5, max_iter=20)
+print("\nRaíz aproximada:", raiz)
