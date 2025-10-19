@@ -9,7 +9,7 @@
 Python 3.10+ (recomendado). No requiere paquetes externos.
 
 ## Ejecutar
-Ubicado en el directorio padre de `newton_app/`:
+Ubicado en el directorio padre de `analisisNumerico_app/`:
 
 ```bash
-python -m newton_app.main
+python -m analisisNumerico_app.main
